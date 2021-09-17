@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!--My CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <title>Login | SITA</title>
+  </head>
+  <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark shadow-lg sticky-md-top" style="background-color: rgb(0, 49, 112);">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="img/faslogo.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            Forum Anak Sumenep / Login<a class="navbar-brand" href="https://fasumenephits.github.io/SITA-FAS.github.io">Home</a>
+          </a>
+        </div>
+      </nav>
+    <!-- Akhir Navbar -->
+
+    <!-- Login -->
+    <section id="login" class="">
+        <div class="container text-center">
+          <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="alert alert-success d-none my-alert" role="alert">
+                    Absensi telah terkirim!
+                  </div>
+              <form name="Absensi-Form">
+                <fieldset unable>
+                  <legend class="text-center">
+                    <img src="img/faslogo.png" alt="Logo FAS" width="200" data-aos="zoom-in" data-aos-duration="500"/>
+                    <h2 data-aos="fade-down" data-aos-duration="500" data-aos-delay="100">Login</h2>
+                  </legend>
+                  <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">Nama</label>
+                    <input type="text" id="nama" class="form-control" placeholder="Username" name="nama">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Asal Forum Anak</label>
+                    <input type="text" class="form-control" id="asal" placeholder="contoh : FA Sumenep, FA Kecamatan Kota" aria-describedby="text" name="asal">
+                    <div id="emailHelp" class="form-text"></div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Absensi</label>
+                    <input type="text" class="form-control" id="absen" aria-describedby="absen" name="absen">
+                    <div id="emailHelp" class="form-text">Ketik hadir jika absensi, dan ketik selesai jika telah memasang tenda</div>
+                    <button type="submit" class="btn btn-primary btn-kirim" mb-3>Submit</button>
+                    <button class="btn btn-primary btn-loading d-none btn-loading" type="button" disabled>
+                        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                        Sabar...
+                      </button>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    <!-- Akhir Login -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyiZloMJeB3oxCry2QzjdJiG3Cc0d83dBSCg4fZFWzIg-zeL6x6FpOW8eBgffQ2TocA/exec'
+        const form = document.forms['Absensi-Form']
+        const btnKirim = document.querySelector('.btn-kirim');
+        const btnLoading = document.querySelector('.btn-loading');
+        const myAlert = document.querySelector('.my-alert');
+  
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          // ketika tombol submit diklik
+          // ketika tombol loading, hilangkan tombol kirim
+          btnLoading.classList.toggle('d-none');
+          btnKirim.classList.toggle('d-none');
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+              // ketika tombol kirim, hilangkan tombol loading
+              btnLoading.classList.toggle('d-none');
+              btnKirim.classList.toggle('d-none');
+              // tampilkan alert
+              myAlert.classList.toggle('d-none');
+              // reset formnya
+              form.reset();
+              console.log('Success!', response);
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+
+  </body>
+</html>
