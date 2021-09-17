@@ -46,14 +46,24 @@
                   </div>
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Asal Forum Anak</label>
-                    <input type="text" class="form-control" id="asal" placeholder="contoh : FA Sumenep, FA Kecamatan Kota" aria-describedby="text" name="asal">
-                    <div id="emailHelp" class="form-text"></div>
+                    <select class="form-select" aria-label="Default select example" name="asal">
+                        <option selected>---</option>
+                        <option value="FAS">Forum Anak Sumenep</option>
+                        <option value="FAKA">Forum Anak Kecamatan Ambunten</option>
+                        <option value="FAKB">Forum Anak Kecamatan Batuan</option>
+                        <option value="FAKK">Forum Anak Kecamatan Kota</option>
+                        <option value="FAKKa">Forum Anak Kecamatan Kalianget</option>
+                      </select>
+                    </div>
                   </div>
                   <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Absensi</label>
-                    <input type="text" class="form-control" id="absen" aria-describedby="absen" name="absen">
-                    <div id="emailHelp" class="form-text">Ketik hadir jika absensi, dan ketik selesai jika telah memasang tenda</div>
-                    <button type="submit" class="btn btn-primary btn-kirim" mb-3>Submit</button>
+                    <label for="exampleInputEmail1" class="form-label">Absensi/Kegiatan</label>
+                    <select class="form-select mb-3" aria-label="Default select example" name="absen">
+                        <option selected>---</option>
+                        <option value="hadir">Hadir</option>
+                        <option value="selesai">Selesai</option>
+                      </select>
+                    <button type="submit" class="btn btn-primary btn-kirim mb-3">Submit</button>
                     <button class="btn btn-primary btn-loading d-none btn-loading" type="button" disabled>
                         <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                         Sabar...
